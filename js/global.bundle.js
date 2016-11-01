@@ -21510,6 +21510,7 @@
 	                    newTodo: '',
 	                    todos: updatedTodos
 	                });
+	                localStorage.setItem('todos', JSON.stringify(updatedTodos));
 	            }
 	        }
 	    }, {
@@ -21526,6 +21527,7 @@
 	                newTodo: '',
 	                todos: updatedTodos
 	            });
+	            localStorage.setItem('todos', JSON.stringify(updatedTodos));
 	        }
 	    }, {
 	        key: 'clearInput',
@@ -21542,6 +21544,7 @@
 	            this.setState({
 	                todos: updatedTodos
 	            });
+	            localStorage.setItem('todos', JSON.stringify(updatedTodos));
 	        }
 	    }, {
 	        key: 'removeTask',
@@ -21551,6 +21554,17 @@
 	            this.setState({
 	                todos: updatedTodos
 	            });
+	            localStorage.setItem('todos', JSON.stringify(updatedTodos));
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var todos = JSON.parse(localStorage.getItem('todos'));
+	            if (todos) {
+	                this.setState({
+	                    todos: todos
+	                });
+	            }
 	        }
 
 	        // have to have a render method. that is what makes it a Component. render has to return JSX code

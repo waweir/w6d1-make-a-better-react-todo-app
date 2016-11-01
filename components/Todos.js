@@ -39,6 +39,7 @@ class Todos extends Component {
                 newTodo: '',
                 todos: updatedTodos
             })
+            localStorage.setItem('todos', JSON.stringify(updatedTodos))
         }
     }
     addTask() {
@@ -53,6 +54,7 @@ class Todos extends Component {
             newTodo: '',
             todos: updatedTodos
         })
+        localStorage.setItem('todos', JSON.stringify(updatedTodos))
     }
     clearInput() {
         this.setState({
@@ -65,6 +67,7 @@ class Todos extends Component {
         this.setState({
             todos: updatedTodos
         })
+        localStorage.setItem('todos', JSON.stringify(updatedTodos))
     }
     removeTask(currentTodoIndex) {
         let updatedTodos = this.state.todos
@@ -72,7 +75,15 @@ class Todos extends Component {
         this.setState({
             todos: updatedTodos
         })
-
+        localStorage.setItem('todos', JSON.stringify(updatedTodos))
+    }
+    componentDidMount() {
+        var todos = JSON.parse(localStorage.getItem('todos'))
+        if (todos) {
+            this.setState({
+                todos: todos
+            })
+        }
     }
 
     // have to have a render method. that is what makes it a Component. render has to return JSX code
